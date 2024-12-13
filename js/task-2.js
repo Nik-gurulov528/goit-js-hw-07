@@ -28,15 +28,17 @@ const images = [
 ];
 
 const listOfImages = document.querySelector('.gallery');
+listOfImages.style.display = 'flex';
+listOfImages.style.flexWrap = 'wrap';
+listOfImages.style.rowGap = '48px';
+listOfImages.style.justifyContent = 'space-evenly';
+listOfImages.style.alignContent = 'space-evenly';
+listOfImages.style.listStyleType = 'none';
 
-images.forEach(item => {
-  let currentElement1;
-  let currentElement2;
-  currentElement1 = document.createElement('li');
-  currentElement2 = document.createElement('img');
-  currentElement2.setAttribute('src', item.url);
-  currentElement2.setAttribute('alt', item.alt);
-  currentElement2.setAttribute('width', '350px');
-  currentElement1.insertAdjacentElement('beforeend', currentElement2);
-  listOfImages.insertAdjacentElement('beforeend', currentElement1);
-});
+const itemsOfList = images
+  .map(
+    image => `<li><img src="${image.url}" alt="${image.alt}" width="400"></li>`
+  )
+  .join('');
+
+listOfImages.innerHTML = itemsOfList;
